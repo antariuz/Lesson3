@@ -1,5 +1,7 @@
 package best.com;
 
-public class LinkedList {
+public class LinkedList<T> {
+
+
 
 }
