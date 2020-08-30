@@ -2,7 +2,7 @@ package best.com;
 
 public class MyArrayList<T> {
 
-    private Object[] array;
+    private Object[] array, tempArray;
     private static final int DEFAULT_CAPACITY = 10;
     private static final Object[] EMPTY_ARRAY = {};
     private int size;
@@ -29,13 +29,16 @@ public class MyArrayList<T> {
     }
 
     public void add(T element) {
-        array[array.length - 1] = element;
+        tempArray = new Object[size + 1];
+        System.arraycopy(array, 0, tempArray, 0, size);
+        size++;
+        array = new Object[size];
+        System.arraycopy(tempArray, 0, array, 0, size);
+        array[size - 1] = element;
     }
 
     public void add(int index, T element) {
-
-
-        array[array.length - 1] = element;
+        //Under construction
     }
 
 
