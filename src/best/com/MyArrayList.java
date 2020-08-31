@@ -1,8 +1,5 @@
 package best.com;
 
-import javax.swing.text.DefaultEditorKit;
-import java.util.Date;
-
 public class MyArrayList<T> {
 
     private Object[] array, tempArray;
@@ -42,7 +39,7 @@ public class MyArrayList<T> {
         System.arraycopy(tempArray, 0, array, 0, size);
     }
 
-    public void shiftArray(int index) {
+    public void shiftingArray(int index) {
         tempArray = array;
         if (index == 0) {
             System.arraycopy(array, 0, tempArray, 1, size);
@@ -64,14 +61,20 @@ public class MyArrayList<T> {
         if (checkSize()) {
             increaseSize();
         }
-        shiftArray(index);
+        shiftingArray(index);
         array[index] = element;
         size++;
     }
 
-    //Debug check
+    public void remove(int index) {
+        if (index != size) {
+            System.arraycopy(array, index + 1, array, index, size - index - 1);
+        }
+        array[size - 1] = null;
+        size--;
+    }
 
-//    public
+    //Debug check
 
     public static void debugCheck(MyArrayList<Integer> array) {
         System.out.println("Initial size: " + array.getSize());
@@ -80,8 +83,8 @@ public class MyArrayList<T> {
             System.out.print(array.get(i) + " ");
         }
         System.out.println("\n" + "Size: " + array.getSize());
-        System.out.println("Added number: 666");
-        array.add(4, 777);
+//        System.out.println("Added number: 666");
+        array.remove(5);
         System.out.println("New size: " + array.getSize());
         for (int i = 0; i < array.array.length; i++) {
             System.out.print(array.get(i) + " ");
