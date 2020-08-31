@@ -1,5 +1,7 @@
 package best.com;
 
+import java.util.Collection;
+
 public class MyArrayList<T> {
 
     private Object[] array, tempArray;
@@ -73,6 +75,31 @@ public class MyArrayList<T> {
         array[size - 1] = null;
         size--;
     }
+
+    public boolean removeAll(Collection<T> c) {
+
+        //Working on
+
+        return false;
+    }
+
+    public int indexOf(Object o) {
+        for (int i = 0; i < size; i++) {
+            if (o.equals(array[i])) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public boolean contains(Object o) {
+        return indexOf(o) >= 0;
+    }
+
+    public boolean isEmpty() {
+        return size == 0;
+    }
+
 
     //Debug check
 
