@@ -1,5 +1,8 @@
 package best.com;
 
+import javax.swing.text.DefaultEditorKit;
+import java.util.Date;
+
 public class MyArrayList<T> {
 
     private Object[] array, tempArray;
@@ -17,7 +20,6 @@ public class MyArrayList<T> {
         } else {
             array = EMPTY_ARRAY;
         }
-        size = array.length;
     }
 
     public T get(int index) {
@@ -26,21 +28,65 @@ public class MyArrayList<T> {
 
     public void set(int index, T element) {
         array[index] = element;
+        size++;
+    }
+
+    public boolean checkSize() {
+        return size == array.length;
+    }
+
+    public void increaseSize() {
+        tempArray = new Object[(array.length * 3) / 2 + 1];
+        System.arraycopy(array, 0, tempArray, 0, size);
+        array = new Object[(array.length * 3) / 2 + 1];
+        System.arraycopy(tempArray, 0, array, 0, size);
+    }
+
+    public void shiftArray(int index) {
+        tempArray = array;
+        if (index == 0) {
+            System.arraycopy(array, 0, tempArray, 1, size);
+        } else if ((index > 0) && (index <= size)) {
+            System.arraycopy(array, index, array, index + 1, size - index);
+        }
     }
 
     public void add(T element) {
-        tempArray = new Object[size + 1];
-        System.arraycopy(array, 0, tempArray, 0, size);
+        if (checkSize()) {
+            increaseSize();
+        }
+        array[size] = element;
         size++;
-        array = new Object[size];
-        System.arraycopy(tempArray, 0, array, 0, size);
-        array[size - 1] = element;
+
     }
 
     public void add(int index, T element) {
-        //Under construction
+        if (checkSize()) {
+            increaseSize();
+        }
+        shiftArray(index);
+        array[index] = element;
+        size++;
     }
 
+    //Debug check
+
+//    public
+
+    public static void debugCheck(MyArrayList<Integer> array) {
+        System.out.println("Initial size: " + array.getSize());
+        for (int i = 0; i < array.array.length; i++) {
+            array.set(i, i + 1);
+            System.out.print(array.get(i) + " ");
+        }
+        System.out.println("\n" + "Size: " + array.getSize());
+        System.out.println("Added number: 666");
+        array.add(4, 777);
+        System.out.println("New size: " + array.getSize());
+        for (int i = 0; i < array.array.length; i++) {
+            System.out.print(array.get(i) + " ");
+        }
+    }
 
     //Setters & Getters
     public Object[] getArray() {
