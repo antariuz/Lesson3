@@ -79,6 +79,14 @@ public class MyArrayList<T> {
     public boolean removeAll(Collection<T> c) {
 
         //Working on
+        for (int i = 0; i < size ; i++) {
+            for (int j = 0; j < c.size(); j++) {
+                if (array[i].equals(c[j]) ) {
+                    remove(i);
+                    break;
+                }
+            }
+        }
 
         return false;
     }
