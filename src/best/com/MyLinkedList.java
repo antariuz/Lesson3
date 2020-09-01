@@ -13,8 +13,9 @@ public class MyLinkedList<E> {
         if (head == null){
             head = tail = node;
         } else {
-
+            tail.setNext(node);
+            node.setPrev(tail);
+            tail = node;
         }
     }
-
 }
