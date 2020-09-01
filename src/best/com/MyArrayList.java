@@ -1,7 +1,5 @@
 package best.com;
 
-import java.util.Collection;
-
 public class MyArrayList<T> {
 
     private Object[] array, tempArray;
@@ -30,18 +28,18 @@ public class MyArrayList<T> {
         size++;
     }
 
-    public boolean checkSize() {
+    private boolean checkSize() {
         return size == array.length;
     }
 
-    public void increaseSize() {
+    private void increaseSize() {
         tempArray = new Object[(array.length * 3) / 2 + 1];
         System.arraycopy(array, 0, tempArray, 0, size);
         array = new Object[(array.length * 3) / 2 + 1];
         System.arraycopy(tempArray, 0, array, 0, size);
     }
 
-    public void shiftingArray(int index) {
+    private void shiftingArray(int index) {
         tempArray = array;
         if (index == 0) {
             System.arraycopy(array, 0, tempArray, 1, size);
@@ -76,23 +74,17 @@ public class MyArrayList<T> {
         size--;
     }
 
-    public boolean removeAll(Collection<T> c) {
-
-        //Working on
-        for (int i = 0; i < size ; i++) {
-            for (int j = 0; j < c.size(); j++) {
-                if (array[i].equals(c[j]) ) {
-                    remove(i);
-                    break;
-                }
+    public boolean removeAll(MyArrayList<T> list) {
+        for (int i = 0; i < getSize(); i++) {
+            if (list.contains(array[i])) {
+                remove(i);
             }
         }
-
-        return false;
+        return true;
     }
 
     public int indexOf(Object o) {
-        for (int i = 0; i < size; i++) {
+        for (int i = 0; i < getSize(); i++) {
             if (o.equals(array[i])) {
                 return i;
             }
@@ -111,12 +103,26 @@ public class MyArrayList<T> {
 
     //Debug check
 
-    public static void debugCheck(MyArrayList<Integer> array) {
-        System.out.println("Initial size: " + array.getSize());
-        for (int i = 0; i < array.array.length; i++) {
-            array.set(i, i + 1);
+    public static MyArrayList<Integer> testList(int initialCapacity) {
+        MyArrayList<Integer> array = new MyArrayList<Integer>(initialCapacity);
+        for (int i = 0; i < initialCapacity; i++) {
+            array.add(i);
+        }
+        return array;
+    }
+
+    public static void showList(MyArrayList<Integer> array) {
+        for (int i = 0; i < array.getSize(); i++) {
             System.out.print(array.get(i) + " ");
         }
+        System.out.println("");
+    }
+
+    public static void showSize(String msg, MyArrayList<Integer> array) {
+        System.out.println(msg + " " + array.getSize());
+    }
+
+    public static void debugCheck(MyArrayList<Integer> array) {
         System.out.println("\n" + "Size: " + array.getSize());
 //        System.out.println("Added number: 666");
         array.remove(5);
