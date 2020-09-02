@@ -1,7 +1,5 @@
 package best.com;
 
-import java.util.LinkedList;
-
 public class Main {
 
     public static void main(String[] args) {
@@ -9,10 +7,16 @@ public class Main {
     }
 
     public static void MyLinkedListTest() {
-        MyLinkedList<Integer> list = new MyLinkedList<Integer>();
-        list.add(1);
-        list.add(2);
-        System.out.println(list);
+        MyLinkedList<String> list = new MyLinkedList<>();
+        list.add("q");
+        list.add("w");
+        list.add("e");
+        list.add("r");
+        list.add("t");
+        list.add("y");
+        System.out.println(list.getSize());
+        System.out.println(list.showLinkedList());
+
     }
 
     public static void MyArrayListTest() {
