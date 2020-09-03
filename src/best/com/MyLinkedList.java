@@ -10,7 +10,7 @@ public class MyLinkedList<E> {
     }
 
     public boolean isEmpty() {
-        return head.getItem() == null;
+        return head == null;
     }
 
     public boolean isValidIndex(int index) {
@@ -57,10 +57,10 @@ public class MyLinkedList<E> {
     }
 
     public void showLinkedList() throws MyExceptions {
-        MyNode<E> tempNode = head;
         if (isEmpty()) {
             throw new MyExceptions("This Linked List is empty");
         }
+        MyNode<E> tempNode = head;
         for (int i = 0; i < getSize(); i++) {
             if (i == 0) {
                 System.out.print(head.getItem() + " ");
