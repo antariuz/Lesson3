@@ -36,14 +36,19 @@ public class MyLinkedList<E> {
         MyNode<E> newNode = new MyNode<>(e);
         MyNode<E> prevNode = findNode(index - 1);
         MyNode<E> nextNode = findNode(index);
-
         prevNode.setNext(newNode);
         newNode.setPrev(prevNode);
         newNode.setNext(nextNode);
         newNode.setPrev(newNode);
-
         size++;
     }
+
+    public E peek() {
+        return head.getItem();
+    }
+
+    
+
 
     public MyNode<E> findNode(int index) throws MyExceptions {
         if (!isValidIndex(index)) {
@@ -75,7 +80,7 @@ public class MyLinkedList<E> {
         for (int i = 0; i < getSize(); i++) {
             System.out.print(i + " ");
         }
-        System.out.println("");
+        System.out.println();
     }
 
     public int getSize() {
