@@ -15,6 +15,10 @@ public class Main {
         list.add("t");
         list.add("y");
         list.showLinkedList();
+        System.out.println("");
+        list.add(4, "Z");
+        list.showLinkedList();
+        System.out.println("Last element: " + list.findNode(list.getSize() - 1).getItem());
     }
 
     public static void MyArrayListTest() {
