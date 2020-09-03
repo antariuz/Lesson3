@@ -16,7 +16,9 @@ public class Main {
         list.add("y");
         list.showLinkedList();
         System.out.println("");
-        list.add(1, "Z");
+//        list.add(0, "Z");
+//        System.out.println(list.peek());
+        list.push("X");
         list.showLinkedList();
         System.out.println("Last element: " + list.findNode(list.getSize() - 1).getItem());
     }
