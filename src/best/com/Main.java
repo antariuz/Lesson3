@@ -2,11 +2,11 @@ package best.com;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws MyExceptions {
         MyLinkedListTest();
     }
 
-    public static void MyLinkedListTest() {
+    public static void MyLinkedListTest() throws MyExceptions {
         MyLinkedList<String> list = new MyLinkedList<>();
         list.add("q");
         list.add("w");
@@ -14,9 +14,7 @@ public class Main {
         list.add("r");
         list.add("t");
         list.add("y");
-        System.out.println(list.getSize());
-        System.out.println(list.showLinkedList());
-
+        list.showLinkedList();
     }
 
     public static void MyArrayListTest() {
