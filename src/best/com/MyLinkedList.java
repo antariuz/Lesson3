@@ -33,21 +33,18 @@ public class MyLinkedList<E> {
         if (!isValidIndex(index)) {
             throw new MyExceptions("The inputted index is larger than the size of the Linked List");
         }
-        MyNode<E> newNode = new MyNode<>(e);
         if (index == 0) {
-            newNode.setPrev(null);
-            newNode.setNext(head);
-            head.setPrev(newNode);
-            head = newNode;
+            push(e);
         } else {
+            MyNode<E> newNode = new MyNode<>(e);
             MyNode<E> prevNode = findNode(index - 1);
             MyNode<E> nextNode = findNode(index);
             prevNode.setNext(newNode);
             newNode.setPrev(prevNode);
             newNode.setNext(nextNode);
             newNode.setPrev(newNode);
+            size++;
         }
-        size++;
     }
 
     public E peek() {
@@ -63,6 +60,18 @@ public class MyLinkedList<E> {
         size++;
     }
 
+
+    public E pop() throws MyExceptions {
+        return removeFirst();
+    }
+
+    public E removeFirst() throws MyExceptions {
+        MyNode<E> removedNode = head;
+        findNode(1).setPrev(null);
+        head = findNode(1);
+        size--;
+        return removedNode.getItem();
+    }
 
     public MyNode<E> findNode(int index) throws MyExceptions {
         if (!isValidIndex(index)) {
